@@ -22,7 +22,13 @@ SCORE_PER_SHAPE = {
      "Z": 3,
 }
 
-def get_strategy_guide() -> list[list[int]]:
+DRAW_SCENARIOS = {
+    "A": "X",
+    "B": "Y",
+    "C": "Z",
+}
+
+def get_strategy_guide() -> list[list[str]]:
     strategy_guide = []
 
     with open("input.txt") as file:
@@ -31,15 +37,32 @@ def get_strategy_guide() -> list[list[int]]:
 
     return strategy_guide
 
-def get_game_total_score(strategy_guide: list[list[int]]) -> int:
+def is_right_move(oponent_choice: str, my_choice: str):
+    return RIGHT_MOVES[oponent_choice] == my_choice
+
+def is_draw_move(oponent_choice: str, my_choice: str):
+    return DRAW_SCENARIOS[oponent_choice] == my_choice
+
+def get_game_total_score(strategy_guide: list[list[str]]) -> int:
     total_score = 0
-    # TODO
+
+    for (oponent_choice, my_choice) in strategy_guide:
+        if is_right_move(oponent_choice, my_choice):
+            print("WON")
+            total_score += SCORE_PER_SHAPE[my_choice] + 6
+        elif is_draw_move(oponent_choice, my_choice):
+            print("DRAW")
+            total_score += SCORE_PER_SHAPE[my_choice] + 3
+        else:
+            print("LOSE")
+            total_score += SCORE_PER_SHAPE[my_choice]
+
     return total_score
-    
 
 def main():
     strategy_guide = get_strategy_guide()
-    print(strategy_guide)
+    total_score = get_game_total_score(strategy_guide)
+    print(total_score)
 
 if __name__ == "__main__":
     main()
