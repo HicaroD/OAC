@@ -48,13 +48,10 @@ def get_game_total_score(strategy_guide: list[list[str]]) -> int:
 
     for (oponent_choice, my_choice) in strategy_guide:
         if is_right_move(oponent_choice, my_choice):
-            print("WON")
             total_score += SCORE_PER_SHAPE[my_choice] + 6
         elif is_draw_move(oponent_choice, my_choice):
-            print("DRAW")
             total_score += SCORE_PER_SHAPE[my_choice] + 3
         else:
-            print("LOSE")
             total_score += SCORE_PER_SHAPE[my_choice]
 
     return total_score
