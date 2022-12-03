@@ -22,10 +22,7 @@ def get_compartiments(rucksack_items: str) -> tuple[set[str], set[str]]:
     return first_compartment, second_compartment
 
 def get_item_priority(item: str):
-    if item.islower():
-        return ord(item) - 96
-    else:
-        return ord(item) - 38
+    return ord(item) - 96 if item.islower() else ord(item) - 38
 
 # Part 1
 def get_priority_sum(rucksascks_items: list[str]) -> int:
