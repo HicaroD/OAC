@@ -21,24 +21,36 @@ def get_compartiments(rucksack_items: str) -> tuple[set[str], set[str]]:
     second_compartment = set(rucksack_items[compartment_separator:])
     return first_compartment, second_compartment
 
+def get_item_priority(item: str):
+    if item.islower():
+        return ord(item) - 96
+    else:
+        return ord(item) - 38
+
+# Part 1
 def get_priority_sum(rucksascks_items: list[str]) -> int:
     priority_sum = 0
 
     for rucksack_item in rucksascks_items:
         first_compartment, second_compartment = get_compartiments(rucksack_item)
         common_item = first_compartment.intersection(second_compartment)
+
         for item in common_item:
-            if item.islower():
-                priority_sum += ord(item) - 96
-            else:
-                priority_sum += ord(item) - 38
+            priority_sum += get_item_priority(item)
 
     return priority_sum
+
+# Part 2
+def get_priority_sum_for_group_of_three(rucksascks_items: list[str]):
+    for rucksack_item in rucksascks_items:
+        pass
 
 def main():
     rucksascks_items = get_rucksacks_items()
     priority_sum = get_priority_sum(rucksascks_items)
+    priority_sum_for_groups = get_priority_sum_for_group_of_three(rucksascks_items)
     print(priority_sum)
+    print(priority_sum_for_groups)
 
 if __name__ == "__main__":
     main()

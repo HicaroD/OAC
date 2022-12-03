@@ -1,7 +1,7 @@
 def get_top_three_elfis(calories: list[int]) -> list[int]:
     top_three_elfis = []
 
-    # TODO: this code is too repetitive
+    # TODO: this code is repetitive and quite slow :(
     greatest_calorie = max(calories)
     top_three_elfis.append(greatest_calorie)
     calories.remove(greatest_calorie)
