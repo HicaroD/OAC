@@ -25,10 +25,10 @@ def get_item_priority(item: str):
     return ord(item) - 96 if item.islower() else ord(item) - 38
 
 # Part 1
-def get_priority_sum(rucksascks_items: list[str]) -> int:
+def get_priority_sum(rucksacks_items: list[str]) -> int:
     priority_sum = 0
 
-    for rucksack_item in rucksascks_items:
+    for rucksack_item in rucksacks_items:
         first_compartment, second_compartment = get_compartiments(rucksack_item)
         common_item = first_compartment.intersection(second_compartment)
 
